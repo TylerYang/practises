@@ -17,22 +17,15 @@ function randomArray(n) {
   if (n < 1 || n > MAX - MIN + 1) {
     throw new Error(`Invalid parameter, should be between 1 and ${MAX - MIN + 1}`)
   }
+
   const set = new Set()
 
-  for (let i = 0; i < n; i++) {
-    let num = randomBetween(MIN, MAX)
-    while (set.has(num)) {
-      debug(`got repeated element: ${num}, current set.length: ${set.size}`)
-      
-      num = randomBetween(MIN, MAX)
-    }
-    set.add(num)
+  while (set.size < n) {
+    set.add(randomBetween(MIN, MAX))
   }
 
   return [...set]
 }
-
-console.log(randomArray(30))
 
 module.exports = randomArray
 
